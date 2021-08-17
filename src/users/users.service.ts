@@ -50,4 +50,8 @@ export class UsersService {
     await user.save(user as any);
     return user;
   }
+
+  public async validateUser(userId: number) {
+    return this.userRepository.findOne({ where: { id: userId } });
+  }
 }

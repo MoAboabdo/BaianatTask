@@ -1,5 +1,4 @@
 import { compare, hash } from 'bcryptjs';
-
 export class AuthHelper {
   static validate(password: string, hashedPassword: string): Promise<boolean> {
     return compare(password, hashedPassword);
