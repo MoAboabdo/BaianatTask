@@ -1,23 +1,26 @@
 import { Resolver, Mutation, Args } from '@nestjs/graphql';
 import { UsersService } from './users.service';
-import { User } from './entities/user.entity';
 import { UserLoginInput } from './dto/user-login.input';
 import { UserRegisterInput } from './dto/user-register.input';
-import { UserType } from './entities/user.type';
+import { UserToken } from './entities/user-token';
 
 @Resolver()
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
-  @Mutation(() => UserType)
+  @Mutation(() => UserToken)
   async register(
-    @Args('registerInput') registerInput: UserRegisterInput,
-  ): Promise<User> {
+    @Args({ name: 'registerInput', type: () => UserRegisterInput })
+    registerInput: UserRegisterInput,
+  ) {
     return await this.usersService.register(registerInput);
   }
 
-  @Mutation(() => UserType)
-  async login(@Args('loginInput') loginInput: UserLoginInput): Promise<User> {
+  @Mutation(() => UserToken)
+  async login(
+    @Args({ name: 'loginInput', type: () => UserLoginInput })
+    loginInput: UserLoginInput,
+  ) {
     return await this.usersService.login(loginInput);
   }
 

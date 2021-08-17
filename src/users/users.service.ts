@@ -9,14 +9,18 @@ import { UserLoginInput } from './dto/user-login.input';
 import { UserRegisterInput } from './dto/user-register.input';
 import { User } from '../users/entities/user.entity';
 import { AuthHelper } from './auth.helper';
+import { JwtDto } from './dto/jwt.dto';
+import { JwtService } from '@nestjs/jwt';
+import { UserToken } from './entities/user-token';
 
 @Injectable()
 export class UsersService {
   constructor(
     @Inject(USER_REPOSITORY) private readonly userRepository: typeof User,
+    private readonly jwt: JwtService,
   ) {}
 
-  async login(loginInput: UserLoginInput): Promise<User> {
+  async login(loginInput: UserLoginInput): Promise<UserToken> {
     const { email, password } = loginInput;
     const userExist = await this.userRepository.findOne({ where: { email } });
 
@@ -32,10 +36,10 @@ export class UsersService {
     if (!passwordValid) {
       throw new Error('Invalid password');
     }
-    return userExist;
+    return { user: userExist, token: this.signToken(userExist.id) };
   }
 
-  async register(registerInput: UserRegisterInput): Promise<User> {
+  async register(registerInput: UserRegisterInput): Promise<UserToken> {
     const { email, password } = registerInput;
     const userExist = await this.userRepository.findOne({
       where: { email },
@@ -48,7 +52,13 @@ export class UsersService {
     user.email = email;
     user.password = await AuthHelper.hash(password);
     await user.save(user as any);
-    return user;
+    return { user: user, token: this.signToken(user.id) };
+  }
+
+  private signToken(id: number) {
+    const payload: JwtDto = { userId: id };
+
+    return this.jwt.sign(payload);
   }
 
   public async validateUser(userId: number) {

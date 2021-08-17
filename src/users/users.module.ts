@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { UsersResolver } from './users.resolver';
 import { usersProviders } from './user.provider';
 import { JwtModule } from '@nestjs/jwt';
+import { GqlAuthGuard } from './guards/gql-auth.guard';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { JwtModule } from '@nestjs/jwt';
       },
     }),
   ],
-  providers: [UsersResolver, ...usersProviders, UsersService],
+  providers: [UsersResolver, ...usersProviders, UsersService, GqlAuthGuard],
   exports: [UsersService],
 })
 export class UsersModule {}
