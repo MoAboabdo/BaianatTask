@@ -1,0 +1,8 @@
+import { FOLLOWER_REPOSITORY } from 'src/constants/constants';
+import { Follower } from './entities/follower.entity';
+export const followerProviders = [
+  {
+    provide: FOLLOWER_REPOSITORY,
+    useValue: Follower,
+  },
+];

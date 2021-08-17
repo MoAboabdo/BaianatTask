@@ -1,9 +1,15 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { BelongsTo, Column, DataType, ForeignKey } from 'sequelize-typescript';
-import { User } from 'src/users/entities/user.entity';
+import {
+  Table,
+  Model,
+  Column,
+  DataType,
+  ForeignKey,
+  BelongsTo,
+} from 'sequelize-typescript';
 
-@ObjectType()
-export class Tweet {
+import { User } from 'src/users/entities/user.entity';
+@Table
+export class Tweet extends Model<Tweet> {
   @Column({
     type: DataType.BIGINT,
     allowNull: false,
@@ -26,6 +32,5 @@ export class Tweet {
   userId: number;
 
   @BelongsTo(() => User)
-  user?: User;
-  static create: Tweet | PromiseLike<Tweet>;
+  user: User;
 }

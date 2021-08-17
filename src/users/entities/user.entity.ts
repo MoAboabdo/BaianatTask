@@ -1,5 +1,7 @@
-import { Table, Model, Column, DataType } from 'sequelize-typescript';
+import { Table, Model, Column, DataType, HasMany } from 'sequelize-typescript';
 
+import { Tweet } from 'src/tweets/entities/tweet.entity';
+import { Follower } from 'src/follower/entities/follower.entity';
 @Table
 export class User extends Model<User> {
   @Column({
@@ -22,4 +24,13 @@ export class User extends Model<User> {
     allowNull: false,
   })
   password: string;
+
+  @HasMany(() => Tweet, 'userId')
+  tweets: Tweet[];
+
+  @HasMany(() => Follower, 'followerId')
+  followers: Follower[];
+
+  @HasMany(() => Follower, 'followedId')
+  followed: Follower[];
 }

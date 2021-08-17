@@ -20,6 +20,11 @@ export class UsersService {
     private readonly jwt: JwtService,
   ) {}
 
+  async findUser(user_Id: number): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { id: user_Id } });
+    return user;
+  }
+
   async login(loginInput: UserLoginInput): Promise<UserToken> {
     const { email, password } = loginInput;
     const userExist = await this.userRepository.findOne({ where: { email } });

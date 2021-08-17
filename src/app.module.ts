@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './users/users.module';
 import { TweetsModule } from './tweets/tweets.module';
+import { FollowerModule } from './follower/follower.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { TweetsModule } from './tweets/tweets.module';
     }),
     UsersModule,
     TweetsModule,
+    FollowerModule,
   ],
 })
 export class AppModule {}
