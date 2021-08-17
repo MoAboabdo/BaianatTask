@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './users/users.module';
+import { TweetsModule } from './tweets/tweets.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { UsersModule } from './users/users.module';
       autoSchemaFile: true,
     }),
     UsersModule,
+    TweetsModule,
   ],
 })
 export class AppModule {}
