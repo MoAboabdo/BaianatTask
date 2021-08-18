@@ -9,7 +9,7 @@ import {
   TEST,
   PRODUCTION,
 } from '../constants/constants';
-const databaseConfig = require('./database.config');
+import { databaseConfig } from './database.config';
 
 export const databaseProviders = [
   {

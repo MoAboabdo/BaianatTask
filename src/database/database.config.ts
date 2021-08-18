@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-module.exports = {
+export const databaseConfig = {
   development: {
     dialect: process.env.DB_DIALECT,
     username: process.env.DB_USER,
