@@ -13,11 +13,11 @@ export class FollowerService {
     private userService: UsersService,
   ) {}
 
-  async makeFollowing(
-    makeFollow: CreateFollowerInput,
+  async followingUser(
+    followUser: CreateFollowerInput,
     user: User,
   ): Promise<Follower> {
-    const { followed_Id } = makeFollow;
+    const { followed_Id } = followUser;
     const followedUser = await this.userService.findUser(followed_Id);
     const userFollower = new Follower();
     if (followedUser) {

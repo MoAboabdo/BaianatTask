@@ -4,6 +4,7 @@ import { UsersResolver } from './users.resolver';
 import { usersProviders } from './user.provider';
 import { JwtModule } from '@nestjs/jwt';
 import { GqlAuthGuard } from './guards/gql-auth.guard';
+import { RgisterFileResolver } from './uploadFile/fileUpload';
 
 @Module({
   imports: [
@@ -14,7 +15,13 @@ import { GqlAuthGuard } from './guards/gql-auth.guard';
       },
     }),
   ],
-  providers: [UsersResolver, ...usersProviders, UsersService, GqlAuthGuard],
+  providers: [
+    UsersResolver,
+    ...usersProviders,
+    UsersService,
+    GqlAuthGuard,
+    RgisterFileResolver,
+  ],
   exports: [UsersService],
 })
 export class UsersModule {}

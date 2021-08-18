@@ -31,11 +31,11 @@ export class FollowerResolver {
   }
 
   @Mutation(() => Follower)
-  async makeFollowing(
+  async followingUser(
     @Args('FollowUser') FollowUser: CreateFollowerInput,
     @CTxUser() user: User,
   ): Promise<Follower> {
-    return this.userFollowerService.makeFollowing(FollowUser, user);
+    return this.userFollowerService.followingUser(FollowUser, user);
   }
 
   @ResolveField(() => User)
