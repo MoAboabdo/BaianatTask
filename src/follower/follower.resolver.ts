@@ -9,9 +9,10 @@ import {
 import { FollowerService } from './follower.service';
 import { Follower } from './entities/follower.entity';
 import { CreateFollowerInput } from './dto/create-follower.input';
-import { UsersService } from 'src/users/users.service';
-import { User } from 'src/users/entities/user.entity';
-import { CTxUser } from 'src/users/decorators/ctx-user.decorator';
+import { UsersService } from '../users/users.service';
+import { User } from '../users/entities/user.entity';
+import { CTxUser } from '../users/decorators/ctx-user.decorator';
+import { FollowerType } from './followerType';
 
 @Resolver(() => Follower)
 export class FollowerResolver {
@@ -39,12 +40,12 @@ export class FollowerResolver {
   }
 
   @ResolveField(() => User)
-  async follower(@Parent() userFollow: Follower) {
+  async follower(@Parent() userFollow: FollowerType) {
     return this.userService.findUser(userFollow.followerId);
   }
 
   @ResolveField(() => User)
-  async followed(@Parent() userFollow: Follower) {
+  async followed(@Parent() userFollow: FollowerType) {
     return this.userService.findUser(userFollow.followedId);
   }
 }

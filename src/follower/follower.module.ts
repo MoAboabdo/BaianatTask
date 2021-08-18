@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { FollowerService } from './follower.service';
 import { FollowerResolver } from './follower.resolver';
 import { followerProviders } from './follower.provider';
-import { UsersModule } from 'src/users/users.module';
+import { UsersModule } from '../users/users.module';
 @Module({
   providers: [FollowerResolver, ...followerProviders, FollowerService],
   imports: [UsersModule],

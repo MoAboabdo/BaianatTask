@@ -1,5 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
-import { User } from 'src/users/entities/user.entity';
+import { User } from '../users/entities/user.entity';
+import { Tweet } from '../tweets/entities/tweet.entity';
+import { Follower } from '../follower/entities/follower.entity';
 
 import {
   SEQUELIZE,
@@ -28,7 +30,7 @@ export const databaseProviders = [
           config = databaseConfig.development;
       }
       const sequelize = new Sequelize(config);
-      sequelize.addModels([User]);
+      sequelize.addModels([User, Tweet, Follower]);
       await sequelize.sync();
       return sequelize;
     },

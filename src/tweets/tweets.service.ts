@@ -1,6 +1,6 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { TWEET_REPOSITORY } from 'src/constants/constants';
-import { User } from 'src/users/entities/user.entity';
+import { TWEET_REPOSITORY } from '../constants/constants';
+import { User } from '../users/entities/user.entity';
 import { CreateTweetInput } from './dto/create-tweet.input';
 import { Tweet } from './entities/tweet.entity';
 import { IPaginationResponse } from './models/IPaginationResponse';

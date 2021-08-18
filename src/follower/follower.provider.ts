@@ -1,4 +1,4 @@
-import { FOLLOWER_REPOSITORY } from 'src/constants/constants';
+import { FOLLOWER_REPOSITORY } from '../constants/constants';
 import { Follower } from './entities/follower.entity';
 export const followerProviders = [
   {

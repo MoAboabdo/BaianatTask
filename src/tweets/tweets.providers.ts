@@ -1,4 +1,4 @@
-import { TWEET_REPOSITORY } from 'src/constants/constants';
+import { TWEET_REPOSITORY } from '../constants/constants';
 import { Tweet } from './entities/tweet.entity';
 
 export const tweetsProviders = [

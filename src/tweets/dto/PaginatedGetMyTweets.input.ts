@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IPaginationInput } from 'src/core/interfaces/IPaginationInput';
+import { IPaginationInput } from '../models/IPaginationInput';
 
 @InputType()
 export class PaginatedGetMyTweets implements IPaginationInput {

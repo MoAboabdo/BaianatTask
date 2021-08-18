@@ -1,7 +1,7 @@
 import { Table, Model, Column, DataType, HasMany } from 'sequelize-typescript';
 
-import { Tweet } from 'src/tweets/entities/tweet.entity';
-import { Follower } from 'src/follower/entities/follower.entity';
+import { Tweet } from '../../tweets/entities/tweet.entity';
+import { Follower } from '../../follower/entities/follower.entity';
 @Table
 export class User extends Model<User> {
   @Column({

@@ -1,9 +1,9 @@
 import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { CreateFollowerInput } from './dto/create-follower.input';
-import { FOLLOWER_REPOSITORY } from 'src/constants/constants';
-import { UsersService } from 'src/users/users.service';
+import { FOLLOWER_REPOSITORY } from '../constants/constants';
+import { UsersService } from '../users/users.service';
 import { Follower } from './entities/follower.entity';
-import { User } from 'src/users/entities/user.entity';
+import { User } from '../users/entities/user.entity';
 
 @Injectable()
 export class FollowerService {

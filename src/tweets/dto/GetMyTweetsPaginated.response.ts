@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { IPaginationResponse } from 'src/core/interfaces/IPaginationResponse';
-import { TweetType } from '../../tweet.type';
+import { IPaginationResponse } from '../models/IPaginationResponse';
+import { TweetType } from '../entities/tweet.type';
 
 @ObjectType()
 export class GetMyTweetsPaginated implements IPaginationResponse<TweetType> {
