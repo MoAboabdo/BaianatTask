@@ -4,7 +4,7 @@ import { FollowerResolver } from './follower.resolver';
 import { followerProviders } from './follower.provider';
 import { UsersModule } from '../users/users.module';
 @Module({
-  providers: [FollowerResolver, ...followerProviders, FollowerService],
+  providers: [...followerProviders, FollowerResolver, FollowerService],
   imports: [UsersModule],
 })
 export class FollowerModule {}

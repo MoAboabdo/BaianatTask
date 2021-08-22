@@ -13,25 +13,28 @@ import { UsersService } from '../users/users.service';
 import { User } from '../users/entities/user.entity';
 import { CTxUser } from '../users/decorators/ctx-user.decorator';
 import { FollowerType } from './followerType';
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from 'src/users/guards/gql-auth.guard';
 
-@Resolver(() => Follower)
+@Resolver(() => FollowerType)
+@UseGuards(GqlAuthGuard)
 export class FollowerResolver {
   constructor(
     private readonly userFollowerService: FollowerService,
     private readonly userService: UsersService,
   ) {}
 
-  @Query(() => [Follower])
+  @Query(() => [FollowerType])
   async listFollower(@CTxUser() user: User): Promise<Follower[]> {
     return this.userFollowerService.listFollower(user);
   }
 
-  @Query(() => [Follower])
+  @Query(() => [FollowerType])
   async listFollowed(@CTxUser() user: User): Promise<Follower[]> {
     return this.userFollowerService.listFollowed(user);
   }
 
-  @Mutation(() => Follower)
+  @Mutation(() => FollowerType)
   async followingUser(
     @Args('FollowUser') FollowUser: CreateFollowerInput,
     @CTxUser() user: User,

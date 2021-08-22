@@ -2,6 +2,9 @@ import { Table, Model, Column, DataType, HasMany } from 'sequelize-typescript';
 
 import { Tweet } from '../../tweets/entities/tweet.entity';
 import { Follower } from '../../follower/entities/follower.entity';
+import { Field, ObjectType } from '@nestjs/graphql';
+
+@ObjectType()
 @Table
 export class User extends Model<User> {
   @Column({
@@ -12,13 +15,13 @@ export class User extends Model<User> {
     primaryKey: true,
   })
   public id: number;
-
+  @Field()
   @Column({
     allowNull: false,
     unique: true,
   })
   email: string;
-
+  @Field()
   @Column({
     type: DataType.STRING,
     allowNull: false,

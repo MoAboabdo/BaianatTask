@@ -8,6 +8,7 @@ import {
 } from 'sequelize-typescript';
 
 import { User } from '../../users/entities/user.entity';
+
 @Table
 export class Tweet extends Model<Tweet> {
   @Column({

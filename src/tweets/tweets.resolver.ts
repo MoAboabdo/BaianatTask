@@ -8,13 +8,14 @@ import { CTxUser } from '../users/decorators/ctx-user.decorator';
 import { User } from '../users/entities/user.entity';
 import { GetMyTweetsPaginated } from './dto/GetMyTweetsPaginated.response';
 import { PaginatedGetMyTweets } from './dto/PaginatedGetMyTweets.input';
+import { TweetType } from './entities/tweet.type';
 
-@Resolver(() => Tweet)
+@Resolver(() => TweetType)
 export class TweetsResolver {
   constructor(private readonly tweetsService: TweetsService) {}
 
   @UseGuards(GqlAuthGuard)
-  @Query(() => Tweet)
+  @Query(() => TweetType)
   async getTweet(
     @Args('id') id: number,
     @CTxUser() user: User,
@@ -32,11 +33,11 @@ export class TweetsResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @Mutation(() => Tweet)
+  @Mutation(() => TweetType)
   createTweet(
     @CTxUser() user: User,
     @Args('createTweetInput') createTweetInput: CreateTweetInput,
-  ) {
+  ): Promise<Tweet> {
     return this.tweetsService.create(user.id, user, createTweetInput);
   }
 }

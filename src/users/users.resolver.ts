@@ -3,8 +3,9 @@ import { UsersService } from './users.service';
 import { UserLoginInput } from './dto/user-login.input';
 import { UserRegisterInput } from './dto/user-register.input';
 import { UserToken } from './entities/user-token';
+import { UserType } from './entities/user.type';
 
-@Resolver()
+@Resolver(()=> UserType)
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 

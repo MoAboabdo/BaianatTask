@@ -1,3 +1,4 @@
+import { ObjectType } from '@nestjs/graphql';
 import {
   BelongsTo,
   Column,
@@ -8,6 +9,7 @@ import {
 } from 'sequelize-typescript';
 import { User } from '../../users/entities/user.entity';
 
+@ObjectType()
 @Table({ indexes: [{ unique: true, fields: ['followerId', 'followedId'] }] })
 export class Follower extends Model<Follower> {
   @Column({
